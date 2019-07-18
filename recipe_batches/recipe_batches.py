@@ -12,6 +12,16 @@ import math
   # search for the minimum modului in the array, and then return that number. 
 
 def recipe_batches(recipe, ingredients):
+
+  batchModuli = []
+
+  for key in recipe: 
+      if ingredients[key] < recipe[key]:
+        return 0 
+      else:
+        batchModuli.append(math.floor(ingredients[key]))
+
+  
   pass 
 
 
