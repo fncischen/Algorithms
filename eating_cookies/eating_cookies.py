@@ -56,28 +56,28 @@ import sys
     # 4 cookies
 
       # category 3 (4 - 1 = 3)
-      # [3 1]
-      # [1 3]
-      # [1 1 2]
-      # [1 2 1]
+      
+      # [2 ,1] -> [3 1]
+      # [1,2] -> [1 3]
+      # [3] -> [1 2 1]
+      # [1 1 1] -> [1 1 1 1]
 
       # category 2 (4 - 2 = 2)
-      # [2 2]
-      # [2 1 1]
+      # [1,1] -> [1 1 2]
+      # [2] -> [2 2]
 
       # category 1 (4 - 3 = 1)
-      # [1 1 1 1]
+      # [1] -> [1 2 1]
 
-    # 5 cookies 
+    # 5 cookies  #### recrusion mode
 
-    # category 3
-    # [3 1 1]
-    # [1 3 1]
-    # [1 1 3]
-    # [3 2]
-    # [2 3]
+    # category 3 (5 - 2 = 3)
+      # [3 1 1]
+      # [1 1 3]
+      # [3 2]
+      # [2 3]
 
-    # category 2
+    # category 4 (5 - 1 = 4)
 
     # [1 2 1]
     # [2 1 2]
@@ -87,9 +87,11 @@ import sys
     # [1 1 2 1]
     # [1 1 1 2]
 
-    # category 1
+    # category 2 (5 - 3 = 2)
 
     # [1 1 1 1 1]
+    # [1 3 1]
+
 
 # 5 - 2 = 3 -> use recursion to get eating_cookies(3)
 # 5 - 3 = 2 -> use recursions to get eating_cookies(2)
