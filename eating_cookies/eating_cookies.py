@@ -49,103 +49,54 @@ import sys
 # [1] -> depending on the size of n, we can place all 1s here 
 
 # let the size of n drive the combinations of 1s and 2s that add up to n. 
-
-# 
-
-# i.e. [2, ]
-# 4 - 2 = 2 
+# for each amount of cookies to be eaten
 
 # 5 - 2 = 3 -> use recursion to get eating_cookies(3)
+# 5 - 3 = 2 -> use recursions to get eating_cookies(2)
+# 5 - 1 = 4 -> use recursion to get eating cookies(1)
 
 #[2 1 2]
 #[2 2 1]
 #[2 1 1 1]
 
-# let's figure out how many ways to break down 2 cookies
-# # we know that n = 2 cookies gives us 1 1 or 2  
-
-# 10 - 2 = 8
-
-# lets figure out how many ways to break down 8 cookies
-
-
-
-## after base case
-# n = 4 
-  # return 7 
-
- 
-
-  # 4
-  # 4 = 3 + 1 + 0 + 0 [ add 1]
-  # 4 = 1 + 3 [ add 1, new since 3 ]
-  # 4 = 2 + 2 [ add 2 ]
-  # 4 = 1 + 1 + 1 + 1 [ add 1, but same ]
- 
- 
-  # 4 = 1 + 1 + 2 + 0 [add 1, but same ]
-  # 4 = 1 + 2 + 1 + 0 [ same ]
-  # 4 = 2 + 1 + 1 + 0 [ same ]
-
-# n = 5
-  # return 12 
-
-  # 5 = 3 + 2
-  # 5 = 2 + 3
-  # 5 = 2 + 2 + 1
-  # 5 = 1 + 2 + 2 
-  # 5 = 1 + 1 + 3
-  # 5 = 3 + 1 + 1 
-  # 5 = 1 + 3 + 1 
-  # 5 = 1 + 1 + 1 + 2
-  # 5 = 1 + 1 + 2 + 1
-  # 5 = 1 + 2 + 1 + 1 
-  # 5 = 2 + 1 + 1 + 1 
-  # 5 = 1 + 1 + 1 + 1 + 1
-
-# n = 6
-  # return 20
-
-  # 6 = 3 + 3
-  # 6 = 1 + 2 + 1 + 2
-  # 6 = 2 + 2 + 1 + 1
-  # 6 = 1 + 1 + 2 + 2
-  # 6 = 2 + 1 + 2 + 1
-  # 6 = 1 + 2 + 2 + 1
-  # 6 = 1 + 1 + 1 + 3
-  # 6 = 1 + 1 + 3 + 1
-  # 6 = 1 + 3 + 1 + 1
-  # 6 = 3 + 1 + 1 + 1
-  # 6 = 3 + 2 + 1
-  # 6 = 2 + 3 + 1
-  # 6 = 1 + 2 + 3
-  # 6 = 
-
-
-## have array of length n
-
-# determine how many ways you can add up to n 
-# 1 1 1 1 1 1 
-# 1 2 1 2 1
-# 2,1,2,1,2
-
-
-# way 1
-    # 12pm: eat 1 cookie, 3pm: eat 1 cookie, 6pm: eat 1 cookie 
-        (1,1,1)
-# way 2:
-    # 12pm: eat 1 cookie, 3pm: eat 2 cookies
-        (1,2,0)
-# way 3:
-    # 12pm: eat 2 cookies, 3pm: eat 1 cookie
-        (2,1,0)
-# way 4:
-    # 12pm: eat 3 cookies, all at once
-        (3,0,0)
 def eating_cookies(n, cache=None):
+  if n <= 1:
+    return 1
+  elif n == 2:
+    return 2
+  elif n == 3:
+    return 4
+  elif n > 3:
+    three = eating_cookies(n-3)
+    two = eating_cookies(n-2)
+    one = eating_cookies(n-1)
+    total_cookies = three + two + one
+    return total_cookies
 
+print(eating_cookies(5))
 
-  pass
+# 5 cookies 
+
+# category 3
+# [3 1 1]
+# [1 3 1]
+# [1 1 3]
+# [3 2]
+# [2 3]
+
+# category 2
+
+# [2 1 1 1]
+# [1 2 1]
+# [2 1 2]
+# [2 2 1]
+# [1 2 1 1]
+# [1 1 2 1]
+# [1 1 1 2]
+
+# category 1
+
+# [1 1 1 1 1]
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
