@@ -72,12 +72,16 @@ import sys
     # 5 cookies  #### recrusion mode
 
     # category 3 (5 - 2 = 3)
+      # [this category has all 3s]
+
       # [3 1 1]
       # [1 1 3]
       # [3 2]
       # [2 3]
 
     # category 4 (5 - 1 = 4)
+   
+    # [4 -> 2,2 -> this category has lots of 2,2s]
 
     # [1 2 1]
     # [2 1 2]
@@ -88,6 +92,7 @@ import sys
     # [1 1 1 2]
 
     # category 2 (5 - 3 = 2)
+    # [ 2s can be 1,1s]
 
     # [1 1 1 1 1]
     # [1 3 1]
