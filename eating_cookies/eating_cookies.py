@@ -6,50 +6,90 @@ import sys
 # a solution that is more efficient than the naive 
 # recursive solution
 
-# cookie monster can eat 
-
-# 0 cookie
-# 1 cookie
-# 2 cookies
-# 3 cookies // constraint
-
-# count how many ways to eat N cookies inside a jar  
-# mouth c
-
-# n number of cookies
-# 5 
-
-# 5,4,3,2,1,0
-
-
-# zero = 0
-# one = 1
-# two = 2
-# three = 3 
-
 # n = 1 cookies
   # return 1
- # 1 []
+ # 1
 
 # n = 2 cookies
+  # 1 1
+  # 2 0
   # return 2
 
- # 1 1 # old
- # 2 0 # new 
 # n = 3 cookies
   # return 4 
 
- # 1 1 1 # old 
- # 1 2  # ne
- # 2 1  # new 
- # 3 # new  
+ # 1 1 1  
+ # 1 2  
+ # 2 1  
+ # 3   
 
-# [3] -> depending on the size of n, we can place 1 or 2 or 3 here
-# [2] -> depending on the size of n, we can place 1 or 2 here
-# [1] -> depending on the size of n, we can place all 1s here 
 
-# let the size of n drive the combinations of 1s and 2s that add up to n. 
-# for each amount of cookies to be eaten
+# for 4: how did I come up with recursion pattern:
+
+# we know that the cookie can either eat 0, 1, 2, or 3 cookies at a time
+
+# step 1) set up three categories
+ 
+    # eating 3 cookies at a time 
+    # [3 ... ]
+
+    # eating 2 cookies at a time
+    # [2 ...]
+
+    # eating 1 cookie at a time
+    # [1 ...]
+
+    # [3] -> depending on the size of n, we can place 1 or 2 or 3 here
+    # [2] -> depending on the size of n, we can place 1 or 2 here
+    # [1] -> depending on the size of n, we can place all 1s here
+
+# step 2) subtract x cookies from n. i.e. 
+
+  # 5 - 3 = 2 
+  # 5 - 2 = 3 
+  # 5 - 1 = 4
+
+# step 3) for the cookies on set 3, use recursion to find the remaining amount of cookies eating at each time to get n cookies eaten
+# and count how many times
+
+# i.e. 
+    # 4 cookies
+
+      # category 3 (4 - 1 = 3)
+      # [3 1]
+      # [1 3]
+      # [1 1 2]
+      # [1 2 1]
+
+      # category 2 (4 - 2 = 2)
+      # [2 2]
+      # [2 1 1]
+
+      # category 1 (4 - 3 = 1)
+      # [1 1 1 1]
+
+    # 5 cookies 
+
+    # category 3
+    # [3 1 1]
+    # [1 3 1]
+    # [1 1 3]
+    # [3 2]
+    # [2 3]
+
+    # category 2
+
+    # [1 2 1]
+    # [2 1 2]
+    # [2 2 1]
+    # [2 1 1 1]
+    # [1 2 1 1]
+    # [1 1 2 1]
+    # [1 1 1 2]
+
+    # category 1
+
+    # [1 1 1 1 1]
 
 # 5 - 2 = 3 -> use recursion to get eating_cookies(3)
 # 5 - 3 = 2 -> use recursions to get eating_cookies(2)
@@ -73,30 +113,10 @@ def eating_cookies(n, cache=None):
     total_cookies = three + two + one
     return total_cookies
 
+print(eating_cookies(4))
 print(eating_cookies(5))
-
-# 5 cookies 
-
-# category 3
-# [3 1 1]
-# [1 3 1]
-# [1 1 3]
-# [3 2]
-# [2 3]
-
-# category 2
-
-# [2 1 1 1]
-# [1 2 1]
-# [2 1 2]
-# [2 2 1]
-# [1 2 1 1]
-# [1 1 2 1]
-# [1 1 1 2]
-
-# category 1
-
-# [1 1 1 1 1]
+print(eating_cookies(10))
+# print(eating_cookies(100))
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
