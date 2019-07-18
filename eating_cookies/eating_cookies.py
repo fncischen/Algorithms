@@ -30,20 +30,32 @@ import sys
 # step 1) set up three categories
  
     # eating 3 cookies at a time 
-    # [3 ...]
+    # [3 ...], [3...] = n
 
     # eating 2 cookies at a time
-    # [2 ...]
+    # [ [2 ...] , [2 .... ] = n 
 
     # eating 1 cookie at a time
-    # [1 ...]
+    # [ [1 ...], [1....] = n
 
     # [3] -> depending on the size of n, we can place 1 or 2 or 3 here
     # [2] -> depending on the size of n, we can place 1 or 2 here
     # [1] -> depending on the size of n, we can place all 1s here
 
 # step 2) subtract x cookies from n. i.e. 
-  # n - x
+  # n - x (let x be the first/last amount of cookies the cookie monster)
+
+  # n - x cookies are left.
+  # how many steps are needed to eat n-x amount of cookies ( recursion)  
+  # base cases 
+
+  # x = 1,2,3
+
+# step 3)
+
+  # add up together after recrusion 
+
+  # assume 3, 2, and 1 are like the last cookies to eat per sequence.  
 
   # 5 - 3 = 2 
   # 5 - 2 = 3 
@@ -55,56 +67,52 @@ import sys
 # i.e. 
     # 4 cookies
 
-      # category 3 (4 - 1 = 3)
-      
-      # [2,1] -> [3 1]
-      # [1,2] -> [1 3]
-      # [3] -> [1 2 1]
-      # [1 1 1] -> [1 1 1 1]
+    # 4 - 3 = 1 -> use recursion to get eating_cookies(1)
+    # 4 - 2 = 2 -> use recursions to get eating_cookies(2)
+    # 4 - 1 = 3 -> use recursion to get eating cookies(3)
 
-      # category 2 (4 - 2 = 2)
-      # [1,1] -> [1 1 2]
-      # [2] -> [2 2]
+    # [3 1]
 
-      # category 1 (4 - 3 = 1)``
-      # [1] -> [2 1 1]
+    # [2 1 1]
+    # [2 2]
+
+    # [1 1 1 1]
+    # [1 1 2]
+    # [1 2 1]
+    # [1 3] 
+
+    # 1 + 2 + 4 = 7
 
     # 5 cookies  #### recrusion mode
 
-    # category 4 (5 - 1 = 4)
-   
-    # [4 -> 2,2 -> this category has lots of 2,2s]
+    # 5 - 2 = 3 -> use recursion to get eating_cookies(3)
+    # 5 - 3 = 2 -> use recursions to get eating_cookies(2)
+    # 5 - 1 = 4 -> use recursion to get eating cookies(1)
 
-    # [1 2 1]
+    # 5 - 3 -> 2 (we need to find how many ways to eat 2 cookies)
+    # 5 - 2 -> 3 (we need to find how many ways to eat 3 cookies)
+    # 5 - 1 -> 4 (we need to find how many ways to eat 4 cookies)
+
+    # this gives us 2 ways to eat 5 cookies 
+
+    # we're basically getting the base case of 2, and putting it into 5, with 3 cookies being the first step. 
+    # [3 1 1]
+    # [3 2]
+
+    # [2 1 1 1]
     # [2 1 2]
     # [2 2 1]
-    # [2 1 1 1]
-    # [1 2 1 1]
-    # [1 1 2 1]
-    # [1 1 1 2]
+    # [2 3]
 
-    # category 3 (5 - 2 = 3)
-      # [this category has all 3s]
-
-      # [3 1 1]
-      # [1 1 3]
-      # [3 2]
-      # [2 3]
-
-    # category 2 (5 - 3 = 2)
-    # [ 2s can be 1,1s]
-
-    # [1 1 1 1 1]
     # [1 3 1]
+    # [1 1 3]
+    # [1 1 2 1]
+    # [1 1 1 1 1]
+    # [1 1 1 2]
+    # [1 2 2]
+    # [1 2 1 1]
 
-
-# 5 - 2 = 3 -> use recursion to get eating_cookies(3)
-# 5 - 3 = 2 -> use recursions to get eating_cookies(2)
-# 5 - 1 = 4 -> use recursion to get eating cookies(1)
-
-#[2 1 2]
-#[2 2 1]
-#[2 1 1 1]
+    # 7 + 4 + 2 = 13 
 
 def eating_cookies(n, cache=None):
   if n <= 1:
