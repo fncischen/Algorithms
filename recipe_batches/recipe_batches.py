@@ -2,6 +2,15 @@
 
 import math
 
+# loop through each ingredient to check if 
+  # the batch amount on recipie[key] is less than the ingredients[key]
+
+  # if less than, automatically return zero and end loop
+  # else calculate the modulus for this ingredient and insert into array of modulus
+
+  # after calculating all the modului of each recipe
+  # search for the minimum modului in the array, and then return that number. 
+
 def recipe_batches(recipe, ingredients):
   pass 
 
