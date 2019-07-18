@@ -2,9 +2,36 @@
 
 import math
 
-def recipe_batches(recipe, ingredients):
-  pass 
+# loop through each ingredient to check if 
+  # the batch amount on recipie[key] is less than the ingredients[key]
 
+  # if less than, automatically return zero and end loop
+  # else calculate the modulus for this ingredient and insert into array of modulus
+
+  # after calculating all the modului of each recipe
+  # search for the minimum modului in the array, make sure that all other numbers are greater than or equal to that moduli
+  # and then return that number
+
+  # i.e. 1, 1 2: return 1, since 2 is greater than 1. 
+
+
+def recipe_batches(recipe, ingredients):
+
+  batchModuli = []
+
+  for key in recipe: 
+      if ingredients[key] < recipe[key] or not ingredients[key]:
+        return 0 
+      else:
+        batchModuli.append(math.floor(ingredients[key]))
+  
+  minBatch = min(batchModuli)
+  return minBatch
+
+recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
+ingredients = { 'milk': 132, 'butter': 48, 'flour': 51 }
+
+print(recipe_batches(recipe,ingredients))
 
 if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
